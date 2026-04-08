@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - BNI Attendance Tracker</title>
+  <link rel="stylesheet" href="admin-dashboard.css" />
+</head>
+<body class="page-shell">
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="brand__mark">BNI</div>
+      <div>
+        <p class="brand__title">Admin Dashboard</p>
+        <p class="brand__subtitle">BNI Attendance Tracker</p>
+      </div>
+    </div>
+
+    <div class="topbar__action-group">
+      <div class="topbar__profile">
+        <span class="topbar__meta">Welcome back</span>
+        <strong id="admin-name">Admin</strong>
+        <span class="topbar__meta">Administrator access</span>
+      </div>
+      <button id="btn-logout" class="button button--danger">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-card">
+      <div class="section-heading">Overview</div>
+      <p class="section-copy">Monitor attendance health, member counts, and absence summary for your chapter.</p>
+      <div id="stats-container" class="stats-grid">
+        <article class="stat-card">
+          <p class="stat-card__label">Total Teams</p>
+          <p class="stat-card__value" id="total-teams">0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-card__label">Total Members</p>
+          <p class="stat-card__value" id="total-members">0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-card__label">Attendance %</p>
+          <p class="stat-card__value" id="attendance-percentage">0%</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-card__label">Total Absent</p>
+          <p class="stat-card__value" id="total-absent">0</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-heading">Filter records</div>
+      <p class="section-copy">Narrow results by meeting date, captain, or team before exporting or reviewing attendance.</p>
+
+      <div class="filter-grid">
+        <div class="filter-field">
+          <label for="filter-date">Meeting Date</label>
+          <input id="filter-date" type="date" class="input-field" />
+        </div>
+        <div class="filter-field">
+          <label for="filter-captain">Captain</label>
+          <select id="filter-captain" class="input-field">
+            <option value="">All Captains</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-team">Team</label>
+          <select id="filter-team" class="input-field">
+            <option value="">All Teams</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="button-group button-group--spaced">
+        <button id="btn-apply-filters" class="button button--primary">Apply Filters</button>
+        <button id="btn-reset-filters" class="button button--secondary">Reset Filters</button>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-heading">Export data</div>
+      <p class="section-copy">Export the filtered attendance report or share a summary with your team.</p>
+      <div class="export-grid" id="export-buttons-container">
+        <button id="btn-export-excel" class="button button--success">Export to Excel</button>
+        <button id="btn-export-pdf" class="button button--secondary">Export to PDF</button>
+        <button id="btn-share-whatsapp" class="button button--primary">Share via WhatsApp</button>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-heading">Attendance table</div>
+      <div class="table-frame">
+        <div id="table-container"></div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Member Name</th>
+              <th>Team</th>
+              <th>Captain</th>
+              <th>Status</th>
+              <th>Reason</th>
+              <th>Prior Intimation</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-tbody">
+            <tr>
+              <td colspan="8" class="loading-state">Loading records…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-heading">Manage master data</div>
+      <p class="section-copy">Open the management view to update captains, teams, and members for your chapter.</p>
+      <div class="button-group button-group--spaced">
+        <a href="./manage-data.html" class="button button--primary">Go to Manage Data</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script type="module" src="../db/firebase-config.js"></script>
+  <script type="module" src="../db/admin-service.js"></script>
+  <script type="module" src="../src/views/admin/dashboard.js"></script>
+</body>
+</html>

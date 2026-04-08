@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Data - BNI Attendance Tracker</title>
+  <link rel="stylesheet" href="manage-data.css" />
+</head>
+<body class="page-shell">
+  <header class="topbar">
+    <div class="topbar__brand">
+      <a href="./admin-dashboard.html" class="back-link">
+        <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </a>
+      <div>
+        <p class="brand__title">Manage Data</p>
+        <p class="brand__subtitle">Captains, Teams & Members</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-card">
+      <div class="tabs">
+        <button data-tab="captains" class="tab-button active">Captains</button>
+        <button data-tab="teams" class="tab-button">Teams</button>
+        <button data-tab="members" class="tab-button">Members</button>
+      </div>
+
+      <div data-content="captains" class="tab-content">
+        <div class="content-header">
+          <button id="btn-add-captain" class="button button--primary">+ Add Captain</button>
+        </div>
+        <div class="table-frame">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Team</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="captains-tbody">
+              <tr>
+                <td colspan="5" class="loading-state">Loading captains…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-content="teams" class="tab-content hidden">
+        <div class="content-header">
+          <button id="btn-add-team" class="button button--primary">+ Add Team</button>
+        </div>
+        <div class="table-frame">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Captain</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="teams-tbody">
+              <tr>
+                <td colspan="3" class="loading-state">Loading teams…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-content="members" class="tab-content hidden">
+        <div class="content-header">
+          <button id="btn-add-member" class="button button--primary">+ Add Member</button>
+        </div>
+        <div class="table-frame">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Member Name</th>
+                <th>Team</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="members-tbody">
+              <tr>
+                <td colspan="3" class="loading-state">Loading members…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Captain Modal -->
+  <div id="captain-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add / Edit Captain</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form class="modal-form">
+        <div class="form-group">
+          <label for="captain-name">Captain Name</label>
+          <input type="text" id="captain-name" class="input-field" placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label for="captain-email">Email</label>
+          <input type="email" id="captain-email" class="input-field" placeholder="captain@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="captain-team">Assign Team</label>
+          <select id="captain-team" class="input-field">
+            <option value="">Select Team</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btn-save-captain" class="button button--primary">Save</button>
+          <button type="button" id="btn-cancel-captain" class="button button--secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Team Modal -->
+  <div id="team-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add / Edit Team</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form class="modal-form">
+        <div class="form-group">
+          <label for="team-name">Team Name</label>
+          <input type="text" id="team-name" class="input-field" placeholder="Team Alpha" />
+        </div>
+        <div class="form-group">
+          <label for="team-captain">Captain</label>
+          <select id="team-captain" class="input-field">
+            <option value="">Select Captain</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btn-save-team" class="button button--primary">Save</button>
+          <button type="button" id="btn-cancel-team" class="button button--secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Member Modal -->
+  <div id="member-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add / Edit Member</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form class="modal-form">
+        <div class="form-group">
+          <label for="member-name">Member Name</label>
+          <input type="text" id="member-name" class="input-field" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label for="member-team">Team</label>
+          <select id="member-team" class="input-field">
+            <option value="">Select Team</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="member-status">Status</label>
+          <select id="member-status" class="input-field">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btn-save-member" class="button button--primary">Save</button>
+          <button type="button" id="btn-cancel-member" class="button button--secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="../db/firebase-config.js"></script>
+  <script type="module" src="../db/admin-service.js"></script>
+  <script type="module" src="../src/views/admin/manage-data.js"></script>
+</body>
+</html>
