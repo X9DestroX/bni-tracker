@@ -349,11 +349,11 @@
         .login-card {
             background: var(--bg-primary);
             border-radius: 20px;
-            padding: 32px 24px;
+            padding: 80px 64px;   /* increased padding */
             width: 100%;
-            max-width: 360px;
+            max-width: 580px;     /* bigger form */
             border: 1px solid var(--border-light);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
         }
         .login-logo {
             display: flex;
@@ -375,8 +375,8 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 11px 14px;
-            font-size: 14px;
+            padding: 14px 16px;
+            font-size: 16px;
             font-family: inherit;
             outline: none;
             color: var(--text-primary);
@@ -389,8 +389,8 @@
             background: var(--red);
             color: white;
             font-weight: 700;
-            font-size: 15px;
-            padding: 13px;
+            font-size: 16px;
+            padding: 15px;
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
@@ -889,13 +889,14 @@ document.getElementById('history-modal').onclick = (e) => {
 // ═══════════════════════════════════════════════
 
 document.getElementById('logout-btn').onclick = () => {
-    if (!confirm('Logout? Your data stays saved locally.')) return;
+    if (!confirm('return to main page?')) return;
+
+    // Clear session
     localStorage.removeItem('bni_teamId');
     localStorage.removeItem('bni_captainName');
-    document.getElementById('dashboard').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('login-name').value = '';
-    document.getElementById('login-team').value = '';
+
+    // Redirect to main page
+    window.location.href = "index.html";
 };
 
 // ═══════════════════════════════════════════════
