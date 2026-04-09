@@ -74,33 +74,59 @@
             <span class="bni-badge">BNI</span>
             <span class="nav-title">MC Tracker</span>
         </div>
-        <button class="logout-btn" id="logout-btn">Logout</button>
+        <!-- Logout FORM -->
+        <form id="logout-form">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
     </div>
 </nav>
 
 <div class="main">
-    <div class="bg-white rounded-2xl p-4 mb-6 border border-slate-100 shadow-sm">
-        <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Manage Team Members</h2>
+
+    <!-- ✅ ADD MEMBER FORM -->
+    <form id="add-member-form" class="bg-white rounded-2xl p-4 mb-6 border border-slate-100 shadow-sm">
+        <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+            Manage Team Members
+        </h2>
+
         <div class="flex gap-2">
-            <input type="text" id="new-member-name" placeholder="Member Name" 
-                class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-red-500">
-            <button id="add-member-btn" class="bg-slate-900 text-white px-5 py-2 rounded-xl font-bold text-sm active:scale-95 transition-transform">Add</button>
+            <input 
+                type="text" 
+                id="new-member-name" 
+                placeholder="Member Name"
+                required
+                class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-red-500"
+            >
+
+            <button 
+                type="submit"
+                class="bg-slate-900 text-white px-5 py-2 rounded-xl font-bold text-sm">
+                Add
+            </button>
         </div>
-    </div>
+    </form>
 
     <h1 class="page-title">Weekly Attendance</h1>
+
     <div class="page-meta">
         <span class="page-date" id="meeting-date"></span>
         <span class="team-tag" id="team-tag"></span>
     </div>
 
     <div id="member-list">
-        <p style="text-align: center; color: #94a3b8; padding-top: 40px;">Loading members...</p>
+        <p style="text-align:center;color:#94a3b8;padding-top:40px;">
+            Loading members...
+        </p>
     </div>
 </div>
 
+<!-- ✅ SUBMIT FORM -->
 <div class="footer-bar">
-    <button class="submit-btn" id="submit-btn">Submit Team Attendance</button>
+    <form id="attendance-form">
+        <button type="submit" class="submit-btn">
+            Submit Team Attendance
+        </button>
+    </form>
 </div>
 
 <script type="module">
