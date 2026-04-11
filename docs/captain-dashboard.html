@@ -889,14 +889,14 @@ document.getElementById('history-modal').onclick = (e) => {
 // ═══════════════════════════════════════════════
 
 document.getElementById('logout-btn').onclick = () => {
-    if (!confirm('return to main page?')) return;
+    if (!confirm('return to selection page?')) return;
 
     // Clear session
     localStorage.removeItem('bni_teamId');
     localStorage.removeItem('bni_captainName');
 
-    // Redirect to main page
-    window.location.href = "index.html";
+    // Redirect to selection page (or reload)
+    window.location.href = "selection.html";
 };
 
 // ═══════════════════════════════════════════════
